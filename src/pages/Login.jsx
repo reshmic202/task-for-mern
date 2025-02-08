@@ -1,5 +1,4 @@
 import { toast } from "react-toastify";
-import axios from "../api";
 import { useState } from "react";
 
 function Login() {
@@ -68,7 +67,7 @@ function Login() {
           <p className="text-gray-600 text-sm text-center mt-3">
             Don't have an account?{" "}
             <a href="/signup" className="text-blue-500 font-semibold hover:underline">
-              SignUn here
+              SignUp here
             </a>
           </p>
         </form>

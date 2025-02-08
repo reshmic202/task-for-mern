@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import axios from "../api";
+
 import { useNavigate } from "react-router-dom";
+
 
 function Dashboard() {
   const [agents, setAgents] = useState(0);
@@ -13,9 +14,9 @@ function Dashboard() {
       token = JSON.parse(token);
 
       try {
-        let agentRes=await fetch(`${process.env.REACT_APP_API_URL}/agents/count`)
+        let agentRes=await fetch(`${process.env.REACT_APP_API_URL}/agents/count/${token}`);
         agentRes = await agentRes.json()
-        let listRes=await fetch(`${process.env.REACT_APP_API_URL}/lists/count`)
+        let listRes=await fetch(`${process.env.REACT_APP_API_URL}/lists/count/${token}`)
         listRes = await listRes.json()
         setAgents(agentRes.count);
         setLists(listRes.count);

@@ -7,6 +7,8 @@ function Upload() {
   const navigate = useNavigate();
 
   const handleUpload = async (e) => {
+    let token = localStorage.getItem("token");
+    token = JSON.parse(token);
     e.preventDefault();
     if (!file) return alert("Please select a file");
 
@@ -14,7 +16,7 @@ function Upload() {
     formData.append("file", file);
 
     try {
-      await axios.post("/api/lists/upload-csv", formData, {
+      await axios.post(`/api/lists/upload-csv/${token}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       alert("CSV uploaded and distributed successfully");

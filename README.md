@@ -1,70 +1,145 @@
-# Getting Started with Create React App
+# **MERN Stack Task Distribution System**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## **Project Overview**
+This is a MERN (MongoDB, Express.js, React.js, Node.js) stack-based project that enables an **Admin** to:
+- Login securely using JWT authentication.
+- Manage **agents** (add, view).
+- Upload a **CSV/XLSX file** and distribute tasks among 5 agents.
+- View distributed lists.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## **Project Structure**
 
-### `npm start`
+```
+mern-task-distribution
+│── backend/              # Express.js Server (Backend)
+│   │── models/           # Mongoose Models
+│   │── routes/           # API Routes
+│   │── config/           # Database and Environment Configuration
+│   │── middleware/       # Authentication Middleware
+│   │── server.js         # Main Entry Point for Backend
+│
+│── frontend/             # React.js (Frontend)
+│   │── src/
+│   │   │── pages/        # Frontend Pages (Login, Dashboard, Agents, Upload)
+│   │   │── components/   # Reusable UI Components
+│   │   │── api.js        # Axios API Calls
+│   │   │── App.js        # Main App Routing
+│   │── package.json      # Frontend Dependencies
+│
+│── .env                  # Environment Variables
+│── README.md             # Project Documentation
+│── package.json          # Backend Dependencies
+│── .gitignore            # Ignored Files
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## **Setup Instructions**
 
-### `npm test`
+### **1. Clone the Repository**
+```sh
+git clone https://github.com/your-repo.git
+cd mern-task-distribution
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### **2. Backend Setup**
+```sh
+cd backend
+npm install
+```
 
-### `npm run build`
+#### **Create a `.env` file in the `backend` folder:**
+```env
+PORT=5000
+MONGO_URI=mongodb://localhost:27017/taskdb
+JWT_SECRET=your_jwt_secret
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### **Run the Backend**
+```sh
+npm start
+```
+Backend runs at: **`http://localhost:5000`**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### **3. Frontend Setup**
+```sh
+cd frontend
+npm install
+```
 
-### `npm run eject`
+#### **Run the Frontend**
+```sh
+npm start
+```
+Frontend runs at: **`http://localhost:3000`**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## **Features**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### **1. Admin Login**
+- JWT authentication-based login.
+- Protected dashboard access.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### **2. Manage Agents**
+- Add new agents.
+- View all registered agents.
 
-## Learn More
+### **3. Upload CSV & Distribute Tasks**
+- Uploads a **CSV/XLSX** file.
+- Parses and validates data.
+- Distributes tasks evenly among 5 agents.
+- Saves assigned tasks in the database.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### **4. View Distributed Lists**
+- Fetches assigned tasks for each agent.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## **API Endpoints**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### **Auth**
+| Method | Route         | Description          |
+|--------|--------------|----------------------|
+| POST   | `/api/auth/login` | Admin Login |
 
-### Analyzing the Bundle Size
+### **Agents**
+| Method | Route         | Description         |
+|--------|--------------|---------------------|
+| GET    | `/api/agents` | Get all agents     |
+| POST   | `/api/agents/add-agent` | Add a new agent |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### **Task Distribution**
+| Method | Route           | Description            |
+|--------|----------------|------------------------|
+| POST   | `/api/lists/upload-csv` | Upload CSV & distribute tasks |
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## **Sample CSV File Format**
+| FirstName | Phone        | Notes  |
+|-----------|-------------|--------|
+| John      | 1234567890  | Task 1 |
+| Alice     | 9876543210  | Task 2 |
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## **Tech Stack**
+- **Frontend**: React.js, Axios
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB, Mongoose
+- **Authentication**: JWT
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## **Future Enhancements**
+- Role-based access control
+- Email notifications to agents
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+https://www.loom.com/share/4b8c6ae848af49febc66a5d5ee3e56db?sid=2cd42e67-300e-4bea-b40e-d47438f76644
+
